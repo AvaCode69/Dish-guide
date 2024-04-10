@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meal-aks
+spec:
+  replicas: 3 # Number of replicas (pods) you want to run
+  selector:
+    matchLabels:
+      app: meal-aks # Label selector for identifying pods belonging to this deployment
+  template:
+    metadata:
+      labels:
+        app: meal-aks # Label for identifying pods belonging to this deployment
+    spec:
+      containers:
+        - name: meal-aks # Name of your container
+          image: ava69/meal-recipe:latest # Docker Hub username/repository:tag
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+      ports:
+        - containerPort: 80
