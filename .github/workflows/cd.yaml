@@ -14,7 +14,6 @@ jobs:
         run: echo "Starting CD workflow"
 
   deploy:
-    needs: CI
     runs-on: ubuntu-latest
 
     steps:
