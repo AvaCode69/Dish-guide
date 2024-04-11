@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    needs: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Login to Azure Container Registry
+      #   uses: azure/docker-login@v1
+      #   with:
+      #     login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+      #     username: ${{ secrets.ACR_USERNAME }}
+      #     password: ${{ secrets.ACR_PASSWORD }}
+
+      # - name: Build Docker image
+      #   run: |
+      #     docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/your-image-name:${{ github.sha }} .
+      #     docker push ${{ secrets.ACR_LOGIN_SERVER }}/your-image-name:${{ github.sha }}
+
+      # - name: Install Azure CLI
+      #   uses: azure/CLI@v1
+      #   with:
+      #     azcliversion: latest
+
+      # - name: Azure AKS Login
+      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+      # - name: Azure AKS Get Credentials
+      #   run: az aks get-credentials --resource-group <your-resource-group> --name <your-aks-cluster-name>
+
+      # - name: Apply Kubernetes manifests
+      #   run: kubectl apply -f kubernetes-manifests/
