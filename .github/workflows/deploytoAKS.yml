@@ -1,0 +1,57 @@
+name: AKS Deployment for Vue.js
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Vue.js project
+      run: npm run build
+
+    - name: Build Docker image
+      run: |
+        docker build -t docker-app:'${{github.sha}}' .
+        docker tag docker-app:'${{github.sha}}' '${{secrets.DOCKER_LOGIN}}'/docker-app:'${{github.sha}}'
+
+    - name: Docker login
+      run: docker login --username '${{secrets.DOCKER_LOGIN}}' --password '${{secrets.DOCKER_PASSWORD}}'
+
+    - name: Push Docker image
+      run: docker push '${{secrets.DOCKER_LOGIN}}'/docker-app:'${{github.sha}}'
+
+    - name: Azure Kubernetes set context
+      uses: Azure/aks-set-context@v1
+      with:
+        creds: '${{secrets.AZURE_CREDENTIALS}}'
+        resource-group: first-groups
+        cluster-name: my-aks-cluster
+
+    - name: Create secret in Kubernetes cluster
+      uses: Azure/k8s-create-secret@v1.1
+      with:
+        container-registry-url: https://index.docker.io/v1/
+        container-registry-username: '${{secrets.DOCKER_LOGIN}}'
+        container-registry-password:  '${{secrets.DOCKER_PASSWORD}}'
+        secret-type: docker-registry
+        secret-name: docker-image-pull-secret
+
+    - name: Deploy to Kubernetes cluster
+      run: |
+        echo "$(<k8s/deployment.yml)" | kubectl apply -f -
+        kubectl rollout status deployment/meal-aks
