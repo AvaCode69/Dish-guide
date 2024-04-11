@@ -7,6 +7,12 @@ on:
       - master
 
 jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy job to start CD workflow
+        run: echo "Starting CD workflow"
+
   deploy:
     needs: CI
     runs-on: ubuntu-latest
