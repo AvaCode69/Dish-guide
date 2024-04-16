@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dummy job to start CD workflow
-        run: echo "Starting CD workflow"
+        run: echo "Starting CD workflow last"
 
   deploy:
     runs-on: ubuntu-latest
