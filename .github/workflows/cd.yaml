@@ -32,9 +32,6 @@ jobs:
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/meal-app:${{ github.sha }} .
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/meal-app:${{ github.sha }}
 
-      - name: Set Permissions for .azure/config
-        run: chmod 666 .azure/config
-
       - name: Install Azure CLI
         uses: azure/CLI@v1
         with:
