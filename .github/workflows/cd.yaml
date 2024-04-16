@@ -32,6 +32,9 @@ jobs:
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/meal-app:${{ github.sha }} .
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/meal-app:${{ github.sha }}
 
+      - name: Set Permissions for .azure/config
+        run: chmod 666 .azure/config
+
       - name: Install Azure CLI
         uses: azure/CLI@v1
         with:
@@ -39,8 +42,8 @@ jobs:
           inlineScript: |
             az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-      - name: Azure AKS Login
-        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+      # - name: Azure AKS Login
+      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Azure AKS Get Credentials
         run: az aks get-credentials --resource-group first-groups --name my-aks-cluster
