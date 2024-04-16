@@ -20,6 +20,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create .azure directory
+        run: mkdir -p $HOME/.azure
+
+      - name: Create config file
+        run: touch $HOME/.azure/config
+
+      - name: Set Permissions for .azure directory and config file
+        run: chmod -R 777 $HOME/.azure
+
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
         with:
