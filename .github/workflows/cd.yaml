@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dummy job to start CD workflow
-        run: echo "Starting CD workflow last"
+        run: echo "Starting CD workflow"
 
   deploy:
     runs-on: ubuntu-latest
@@ -19,15 +19,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Create .azure directory
-        run: mkdir -p $HOME/.azure
-
-      - name: Create config file
-        run: touch $HOME/.azure/config
-
-      - name: Set Permissions for .azure directory and config file
-        run: chmod -R 777 $HOME/.azure
 
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
@@ -48,8 +39,8 @@ jobs:
           inlineScript: |
             az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-      - name: Setup permissions for Azure CLI log directory
-        run: mkdir -p $HOME/.azure/commands && chmod -R 777 $HOME/.azure/commands
+      # - name: Azure AKS Login
+      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Azure AKS Get Credentials
         run: az aks get-credentials --resource-group first-groups --name my-aks-cluster
