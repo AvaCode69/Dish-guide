@@ -45,7 +45,7 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }} --config-dir $HOME/.azure
+            az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Adjust permissions for Azure CLI log directory
         run: chmod -R 777 $HOME/.azure/commands
