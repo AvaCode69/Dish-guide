@@ -13,7 +13,7 @@ spec:
         app: meal-aks
     spec:
       containers:
-        - name: meal-aks
+        - name: mealApp
           image: meal-app:latest
           resources:
             limits:
