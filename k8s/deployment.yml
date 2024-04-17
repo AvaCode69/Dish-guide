@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: meal-aks
-          image: docker-app:latest
+          image: meal-app:latest
           resources:
             limits:
               cpu: '500m'
