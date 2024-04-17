@@ -42,4 +42,4 @@ jobs:
         run: kubectl apply -f k8s/deployment.yml
 
       - name: Apply Kubernetes service manifest
-        run: kubectl apply -f k8s/service.yaml
+        run: kubectl apply -f k8s/service.yml
