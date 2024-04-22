@@ -21,3 +21,4 @@ spec:
               memory: '128Mi'
           ports:
             - containerPort: 80
+            - containerPort: 443
