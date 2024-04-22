@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: meal-aks
-          image: meal-app:39ba1b0953312c57ed03225dd0946b8ef4606c82
+          image: meal-app:latest
           resources:
             limits:
               cpu: '500m'
