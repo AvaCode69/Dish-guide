@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meal-aks
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: meal-aks
+  template:
+    metadata:
+      labels:
+        app: meal-aks
+    spec:
+      containers:
+        - name: meal-aks
+          image: meal-image:latest
+          resources:
+            limits:
+              cpu: '500m'
+              memory: '128Mi'
+          ports:
+            - containerPort: 80
+            - containerPort: 443
