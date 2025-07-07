@@ -8,12 +8,12 @@ describe('FilterArea.vue', () => {
     const wrapper = mount(FilterArea, {
       data() {
         return {
-          areas // Provide mock data directly to the component
+          areas
         }
       }
     })
 
-    await wrapper.vm.$nextTick() // Wait for the component to update
+    await wrapper.vm.$nextTick()
 
     const listItems = wrapper.findAll('.item-link')
 
@@ -25,7 +25,7 @@ describe('FilterArea.vue', () => {
   })
 
   it('calls getAreasList method on mounted hook', () => {
-    const getAreasList = jest.fn() // Mock the getAreasList method
+    const getAreasList = jest.fn()
     mount(FilterArea, {
       setup() {
         return {
@@ -36,6 +36,4 @@ describe('FilterArea.vue', () => {
 
     expect(getAreasList).toHaveBeenCalled()
   })
-
-  // You can add more tests to cover other functionalities such as error handling, etc.
 })
