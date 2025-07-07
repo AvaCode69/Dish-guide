@@ -1,46 +1,42 @@
-# meals-recipe
+# 🍽️ Recipe Finder App
 
-This template should help get you started developing with Vue 3 in Vite.
+A user-friendly web application for discovering food recipes by name, category, and region. Built with Vue 3, TypeScript, and Bootstrap, it features a responsive design with live autosuggestions and dynamic filtering.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 🔍 Features
 
-## Type Support for `.vue` Imports in TS
+- 🔎 **Live Search (Autosuggest)** for recipes by name
+- 📂 **Browse by Category** (e.g., Desserts, Seafood, Vegan)
+- 🌍 **Browse by Area** (e.g., Italian, Mexican, Japanese)
+- 📱 Responsive UI using Bootstrap
+- ⚡ Built with Vue 3 + TypeScript + Vite
+- 🔗 Deep linking to recipe details
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+---
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 🚀 Live Demo
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+> [Click here to view the live app](https://dish-guide.netlify.app/)
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 🛠️ Tech Stack
 
-## Project Setup
+- **Vue 3** (Composition API)
+- **TypeScript**
+- **Bootstrap 5**
+- **Vite**
+- **TheMealDB API**
 
-```sh
+---
+
+## 📦 Project Setup
+
+```bash
+# install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# run the project
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
